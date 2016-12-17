@@ -1,0 +1,55 @@
+<?php
+$this->title = "Перегляд гостової книги";
+$this->headTitle($this->title);
+?>
+<div class="container">
+    <div class="row">
+        <a href="<?= $this->baseUrl; ?>/manageadmin"">Адмінка</a></br></br></br>
+
+        <a href="<?= $this->baseUrl; ?>/managevideos/add">Додати</a>
+        <table class="table table-condensed table-bordered table-hover">
+            <thead>
+            <tr class="caption">
+                <th>Назва</th>
+                <th>посилання на відео</th>
+                <?php
+                $auth = Zend_Auth::getInstance();
+                $acl = Zend_Registry::get('acl');
+                $role = $auth->getIdentity()->role;
+                if(isset($role) AND $role == 'admin')
+                { ?>
+                    <th>Action</th>
+                    <?php
+                } ?>
+            </tr>
+            </thead>
+
+            <?php
+            if (count($this->paginator)) { ?>
+                <?php foreach ($this->paginator as $item) {?>
+                    <tr>
+                        <td><?= $item['title']; ?></td>
+                        <td><?= $item['href']; ?></td>
+                        <?php
+                        $auth = Zend_Auth::getInstance();
+                        $acl = Zend_Registry::get('acl');
+                        $role = $auth->getIdentity()->role;
+                        if(isset($role) AND $role == 'admin')
+                        { ?>
+                            <td>
+                                <a href="<?= $this->baseUrl; ?>/managevideos/delete/id/<?= $item['id'];?>">
+                                    Видалити
+                                </a>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                    <?php
+                }
+            }
+            ?>
+        </table>
+
+    </div>
+</div>
+
+<?= $this->paginationControl($this->paginator); ?>

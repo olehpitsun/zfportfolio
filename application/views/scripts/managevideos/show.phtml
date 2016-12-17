@@ -1,0 +1,37 @@
+<?php
+$this->title = "";
+$this->headTitle($this->title);
+?>
+<div class="container-fluid">
+    <div class="row">
+
+
+
+                        <?php
+                        $auth = Zend_Auth::getInstance();
+                        $acl = Zend_Registry::get('acl');
+                        $role = $auth->getIdentity()->role;
+                        if(isset($role) AND $role == 'admin')
+                        { ?>
+                            <th>Action</th>
+                        <?php
+                        } ?>
+
+                <?php
+                if (count($this->paginator)) { ?>
+                    <?php foreach ($this->paginator as $item) {?>
+                            <?= $item['title']; ?>
+                            <?= $item['href']; ?>
+                            <?= $item['img_title']; ?>
+
+                            <?php
+                            $auth = Zend_Auth::getInstance();
+                            $acl = Zend_Registry::get('acl');
+                            $role = $auth->getIdentity()->role; ?>
+                    <?php
+                    }
+                }
+                ?>
+
+    </div>
+</div>

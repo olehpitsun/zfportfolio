@@ -1,0 +1,20 @@
+<?php
+$this->title = "Стаття";
+$this->headTitle($this->title);
+?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 " >
+        <?php
+        if (count($this->paginator)) { ?>
+            <?php foreach ($this->paginator as $item) {?>
+                <img src="/vendor/portfolio/news_img/<?= $item['img_name']; ?>"/></br>
+                <h3><?= $item['title']; ?></h3></br>
+                <p><?= $item['title']; ?></p>
+                <?php
+            }
+        }
+        ?>
+        </div>
+    </div>
+</div>

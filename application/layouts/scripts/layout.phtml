@@ -1,0 +1,98 @@
+<?php 
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+
+echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+    <?php error_reporting(E_ALL);
+    ini_set("display_errors", 0);  ?>
+    <?php echo $this->headMeta(); ?> 
+    <?php echo $this->headTitle(); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/vendor/themes/Moderna/css/bootstrap.min.css'); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/vendor/themes/Moderna/css/fancybox/jquery.fancybox.css'); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/vendor/themes/Moderna/css/jcarousel.css'); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/vendor/themes/Moderna/css/flexslider.css'); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/vendor/themes/Moderna/css/style.css'); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/vendor/themes/Moderna/skins/default.css'); ?>
+
+    <style>
+        .footer_div{
+            background-color: #961717;
+            -webkit-text-fill-color: #d9edf7;
+        }
+        .li {
+            -webkit-text-fill-color: #b71c1c;
+        }
+    </style>
+</head>
+    <body>
+
+    <div id="wrapper">
+        <!-- start header -->
+        <header>
+            <div class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="<?php echo $this->baseUrl('/'); ?>"><img src="<?php echo $this->baseUrl(); ?>/vendor/themes/Moderna/img/logo.png" alt="T-format" width="70%" height="50px" /></a>
+                    </div>
+                    <div class="navbar-collapse collapse ">
+
+
+                        <ul class="nav navbar-nav">
+                            <li><a href="<?php echo $this->baseUrl('/'); ?>#content">Новини</a></li>
+                            <li><a href="<?php echo $this->baseUrl('/'); ?>videos/index">Весільне відео</a></li>
+                            <li><a href="<?php echo $this->baseUrl('/'); ?>ourjob">Наші роботи</a></li>
+                            <li><a href="<?php echo $this->baseUrl('/'); ?>faq">FAQ</a></li>
+                            <li><a href="<?php echo $this->baseUrl('/'); ?>contacts">Контакти</a></li>
+                            <li><a href="<?php echo $this->baseUrl('/'); ?>auth/login">Увійти</a></li>
+
+                            <?php
+                            $auth = Zend_Auth::getInstance();
+                            $acl = Zend_Registry::get('acl');
+                            $role = $auth->getIdentity()->role;
+                            if ($role == 'admin') {?>
+                                <li><a href="<?php echo $this->baseUrl('/'); ?>auth/logout">Вийти</a></li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+</br></br>
+
+        <?php echo $this->layout()->content; ?>
+    </div>
+
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/jquery.easing.1.3.js');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/bootstrap.min.js');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/jquery.fancybox.pack.js');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/jquery.fancybox-media.js');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/google-code-prettify/prettify.js');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/portfolio/jquery.quicksand.js');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/portfolio/setting.js');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/animate.js');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/vendor/themes/Moderna/js/custom.js');?>
+
+    </body>
+    <div class="footer_div">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cta-text">
+                        <h4><b>T-format 2017</b></h4>
+                    </div>
+                    <small><a href="http://bootstraptaste.com/">Bootstrap Themes</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>

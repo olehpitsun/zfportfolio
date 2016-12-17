@@ -1,0 +1,42 @@
+<?php
+$this->title = "Наші роботи";
+$this->headTitle($this->title);
+?>
+<style>
+    img {
+        max-height: 140px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <?php
+        $auth = Zend_Auth::getInstance();
+        $acl = Zend_Registry::get('acl');
+        $role = $auth->getIdentity()->role;
+
+        if (count($this->paginator)) { ?>
+            <?php foreach ($this->paginator as $item) {?>
+                <a href="<?php echo $this->baseUrl() ?>/ourjob/show/id/<?= $item['id']; ?>">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="pricing-box-alt">
+                            <div class="pricing-heading">
+                                <img src="<?php echo $this->baseUrl() ?>/vendor/portfolio/<?= $item['img_title']; ?>"
+                                     width="100%"/>
+                            </div>
+                            <div class="pricing-terms" style="background-color: #961717">
+                                <h6><?= $item['title']; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <?php
+                $auth = Zend_Auth::getInstance();
+                $acl = Zend_Registry::get('acl');
+                $role = $auth->getIdentity()->role;
+            }
+        }
+        ?>
+    </div>
+</div>
+
+</br></br></br></br></br></br></br>
