@@ -10,7 +10,7 @@ $this->headTitle($this->title);
             <?php foreach ($this->paginator as $item) {?>
                 <img src="/vendor/portfolio/news_img/<?= $item['img_name']; ?>"/></br>
                 <h3><?= $item['title']; ?></h3></br>
-                <p><?= $item['title']; ?></p>
+                <p><?= $item['text']; ?></p>
                 <?php
             }
         }
