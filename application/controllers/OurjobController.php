@@ -34,11 +34,13 @@ class OurjobController extends Zend_Controller_Action
         $id = $this->_getParam('id', 0);
 
         if ($id > 0) {
-
             $result = new Model_DbTable_Jobs();
-            $result = $result->getInfoByid($id);
 
-            $this->view->paginator = $result;
+            $randomVideoList = $result->getRandomVideoList();
+            $video = $result->getInfoByid($id);
+
+            $this->view->video = $video;
+            $this->view->randomList = $randomVideoList;
         }
     }
 

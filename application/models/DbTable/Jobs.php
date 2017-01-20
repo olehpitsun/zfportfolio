@@ -73,4 +73,19 @@ class Model_DbTable_Jobs extends Zend_Db_Table_Abstract
         $result = $this->fetchAll($select)->toArray();
         return $result;
     }
+
+    public function getRandomVideoList(){
+
+        $select = $this->select('id');
+        $result = $this->fetchAll($select)->toArray();
+
+        $rand_keys = array_rand($result, 3);
+
+        $random_result = array();
+
+        for($i=0; $i < 3; $i++){
+            $random_result[$i] = $result[$rand_keys[$i]];
+        }
+        return $random_result;
+    }
 }

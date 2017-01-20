@@ -28,17 +28,17 @@ class VideosController extends Zend_Controller_Action
         $this->view->paginator = $paginator;
     }
 
-
     public function showAction()
     {
         $id = $this->_getParam('id', 0);
-
         if ($id > 0) {
-
             $result = new Model_DbTable_Videos();
-            $result = $result->getInfoByid($id);
 
-            $this->view->paginator = $result;
+            $randomVideoList = $result->getRandomVideoList();
+            $video = $result->getInfoByid($id);
+
+            $this->view->video = $video;
+            $this->view->randomList = $randomVideoList;
         }
     }
 
