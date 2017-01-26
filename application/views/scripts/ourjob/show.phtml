@@ -10,11 +10,13 @@ $this->headTitle($this->title);
         <?php
         if (count($this->video)) {
             foreach ($this->video as $item) {?>
-                <h3 style="text-align: center"><b><?= $item['title']; ?></b></h3>
+                <font size="10" face="Monotype Corsiva" color="#8B0000"> <h1 style="text-align: center"><b><?= $item['title']; ?></b></h1> </font>
 
-                <iframe src="<?= $item['href']; ?>" width="100%" height="563" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+                <center>
+                    <iframe src="<?= $item['href']; ?>?color=8B0000&title=0&byline=0&portrait=0" width="1020" height="573" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
 
-                </iframe>
+                    </iframe>
+                </center>
                 <?php
             }
         }
@@ -29,13 +31,14 @@ $this->headTitle($this->title);
         if (count($this->randomList)) {
             foreach ($this->randomList as $item) { ?>
                 <a href="<?php echo $this->baseUrl() ?>/ourjob/show/id/<?= $item['id']; ?>">
-                    <div class="col-sm-4">
-                        <div class="col-sm-12 thumbnail text-center">
-                            <img alt="<?= $item['title']; ?>" class="img-responsive" src=
-                            "<?php echo $this->baseUrl() ?>/vendor/portfolio/<?= $item['img_title']; ?>" >
-
-                            <div class="caption">
-                                <h4><?= $item['title']; ?></h4>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="pricing-box-alt">
+                            <div class="pricing-heading">
+                                <img src="<?php echo $this->baseUrl() ?>/vendor/portfolio/<?= $item['img_title']; ?>"
+                                     width="100%"  />
+                            </div>
+                            <div class="pricing-terms" style="background-color: #961717">
+                                <h6><?= $item['title']; ?></h6>
                             </div>
                         </div>
                     </div>
